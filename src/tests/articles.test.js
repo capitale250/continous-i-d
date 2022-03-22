@@ -49,7 +49,10 @@ describe('Articles', function(){
             .attach("article_image", "download.jpg")
             .field("description", "this is from the test")
             .end((err, res) => {
-                if(err) done(err)                    
+                if(err){
+                    console.log(err)
+                    done(err) 
+                }                    
                                    
                 chai.expect(res).have.status(200);
                 chai.expect(res.body).be.a('object');
