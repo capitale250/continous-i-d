@@ -27,7 +27,7 @@ cloudinary.config({
 // }
 // export {upds}
 //cloudinary.v2.uploader.upload(req.file, function(error, result) { console.log(result);console.log(error) });
-const storage =new CloudinaryStorage({
+const storage = CloudinaryStorage({
     cloudinary: cloudinary,
     folder: 'demo',
     allowedFormats: ["jpg", "png"],
