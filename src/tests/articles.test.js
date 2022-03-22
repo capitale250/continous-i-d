@@ -16,7 +16,7 @@ import {newsletterModel, articlesModel} from '../modules/models.js'
 chai.use(chaiHttp)
 const agent = request.agent(app);
 
-const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0Nzg2MzU4NCwiZXhwIjoxNjQ3OTQ5OTg0fQ.Ebxl4yBRMZoAIpBP0kNUzxRaQwNaY1e96CP7S6zZWsI"
+const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0Nzk1NjA0OSwiZXhwIjoxNjQ4MDQyNDQ5fQ.b7lkhm9-tGdNha3feIc3lKcRjDRX1toRj_mKnUL0s4E"
 // beforeAll(() => jest.setTimeout(90 * 1000))
 beforeAll( function(done){
  
@@ -25,7 +25,7 @@ beforeAll( function(done){
     .post('/api/articles/add')
     .set("Authorization", token)
     .set('Content-Type', 'multipart/form-data')
-    .field("title","article to delete" )
+    .field("title","1article to delete" )
     .attach("article_image", "download.jpg")
     .field("description", "this is the article to delete from the test")
     .end((err, res) => {
@@ -45,21 +45,18 @@ describe('Articles', function(){
             .post('/api/articles/add')
             .set("Authorization", token)
             .set('Content-Type', 'multipart/form-data')
-            .field("title","2Yeah2 from tests" )
+            .field("title","2Yeah from tests" )
             .attach("article_image", "download.jpg")
             .field("description", "this is from the test")
             .end((err, res) => {
-                if(err){
-                    console.log(err)
-                    done(err) 
-                }                    
+                if(err) done(err)                    
                                    
                 chai.expect(res).have.status(200);
                 chai.expect(res.body).be.a('object');
                 chai.expect(res.body).to.have.deep.property("_id")
             done();
             });
-    },150000)
+    },100000)
     
   
     it('should view an article', (done)=>{
@@ -113,7 +110,7 @@ describe('Articles', function(){
     },100000)
     it('should delete article', function(done){
         
-        articlesModel.findOne({Title: "article to delete"}).then(function(result){
+        articlesModel.findOne({Title: "1article to delete"}).then(function(result){
             chai.request(app)
             .post('/api/articles/delete')
             .set('Content-Type', 'application/json')
@@ -137,7 +134,7 @@ describe('Articles', function(){
     },100000)
 })
 afterAll(function(){
-    articlesModel.findOne({Title: "2Yeah2 from tests"}).then(function(result){
+    articlesModel.findOne({Title: "2Yeah from tests"}).then(function(result){
         chai.request(app)
         .post('/api/articles/delete')
         .set('Content-Type', 'application/json')
