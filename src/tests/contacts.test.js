@@ -26,7 +26,7 @@ beforeAll(function(done){
         // chai.expect(res.body).be.a('object');
     done();
     });
-},150000)
+},100000)
 describe('Contact', function(){
    
     it('it should GET all the Contacts', (done) => {
@@ -77,7 +77,7 @@ describe('Contact', function(){
             chai.expect(res.body).be.a('object');
             done();
         });
-    },150000)
+    },100000)
     it("should return 403", (done)=>{
         chai.request(app)
         .post("/api/contacts/add")

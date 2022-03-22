@@ -56,7 +56,7 @@ describe('Articles', function(){
                 chai.expect(res.body).to.have.deep.property("_id")
             done();
             });
-    },200000)
+    },100000)
     
   
     it('should view an article', (done)=>{
