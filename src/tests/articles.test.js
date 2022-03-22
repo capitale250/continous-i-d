@@ -25,7 +25,7 @@ beforeAll( function(done){
     .post('/api/articles/add')
     .set("Authorization", token)
     .set('Content-Type', 'multipart/form-data')
-    .field("title","1article to delete" )
+    .field("title","article to delete" )
     .attach("article_image", "download.jpg")
     .field("description", "this is the article to delete from the test")
     .end((err, res) => {
@@ -45,7 +45,7 @@ describe('Articles', function(){
             .post('/api/articles/add')
             .set("Authorization", token)
             .set('Content-Type', 'multipart/form-data')
-            .field("title","2Yeah from tests" )
+            .field("title","2Yeah2 from tests" )
             .attach("article_image", "download.jpg")
             .field("description", "this is from the test")
             .end((err, res) => {
@@ -110,7 +110,7 @@ describe('Articles', function(){
     },100000)
     it('should delete article', function(done){
         
-        articlesModel.findOne({Title: "1article to delete"}).then(function(result){
+        articlesModel.findOne({Title: "article to delete"}).then(function(result){
             chai.request(app)
             .post('/api/articles/delete')
             .set('Content-Type', 'application/json')
@@ -134,7 +134,7 @@ describe('Articles', function(){
     },100000)
 })
 afterAll(function(){
-    articlesModel.findOne({Title: "2Yeah from tests"}).then(function(result){
+    articlesModel.findOne({Title: "2Yeah2 from tests"}).then(function(result){
         chai.request(app)
         .post('/api/articles/delete')
         .set('Content-Type', 'application/json')
