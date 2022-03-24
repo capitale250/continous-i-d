@@ -5,7 +5,7 @@ import request from 'supertest'
 import app from '../../index.js'
 import jest from 'jest'
 import {newsletterModel, contactsModel} from '../modules/models.js'
-const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0Nzk1NjA0OSwiZXhwIjoxNjQ4MDQyNDQ5fQ.b7lkhm9-tGdNha3feIc3lKcRjDRX1toRj_mKnUL0s4E"
+const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0ODEzMjM3OSwiZXhwIjoxNjQ4MjE4Nzc5fQ.nBwYc1McW24k9pIDGpp4EsvXFxLjxGNxbmU7yucqK9c"
 const agent = request.agent(app);
 chai.use(chaiHttp)
 
