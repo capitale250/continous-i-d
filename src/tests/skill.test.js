@@ -12,7 +12,7 @@ describe('Skills', function(){
      
     it('it should GET all the Skills', (done) => {
         chai.request(app)
-            .get('/api/Skills/view')
+            .get('/api/skills//view')
             .end((err, res) => {
                 if(err) done(err)
                 chai.expect(res).have.status(200);
