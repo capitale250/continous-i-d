@@ -44,7 +44,7 @@ export class Articles{
                    else{
                    articlesModel.create({
                     Title : req.body.title,
-                    FeaturedImage : req.file.path ,
+                    FeaturedImage : '/images/articles/' + req.file.filename,
                     Description :req.body.description ,
                     PostDate: new Date()
                     }, 
