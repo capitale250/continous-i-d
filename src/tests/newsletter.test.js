@@ -6,7 +6,7 @@ import chaiHttp from 'chai-http'
 import { isTaggedTemplateExpression } from '@babel/types';
 const agent = request.agent(app)
 chai.use(chaiHttp)
-const token="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0ODEzMjM3OSwiZXhwIjoxNjQ4MjE4Nzc5fQ.nBwYc1McW24k9pIDGpp4EsvXFxLjxGNxbmU7yucqK9c"
+const token="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0ODI5MDIyNiwiZXhwIjoxNjQ4Mzc2NjI2fQ.iDRedODFJTfif7Q9fxU9C3QFS4t1GRO2MxZ-FG7JTWg"
 
 beforeAll((done)=>{
     chai.request(app)

@@ -12,14 +12,14 @@ describe('Skills', function(){
      
     it('it should GET all the Skills', (done) => {
         chai.request(app)
-            .get('/api/skills//view')
+            .get('/api/skills/view')
             .end((err, res) => {
                 if(err) done(err)
                 chai.expect(res).have.status(200);
                 chai.expect(res.body).length(res.body.length).greaterThan(0);
                 done();
             })
-    },5000);
+    },10000);
     it("should return 403 if no Authorization", (done)=>{
         chai.request(app)
         .post("/api/skills/add")

@@ -16,7 +16,7 @@ import {newsletterModel, articlesModel} from '../modules/models.js'
 chai.use(chaiHttp)
 const agent = request.agent(app);
 
-const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0ODEzMjM3OSwiZXhwIjoxNjQ4MjE4Nzc5fQ.nBwYc1McW24k9pIDGpp4EsvXFxLjxGNxbmU7yucqK9c"
+const token = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjY3NjVjYzczZmRhY2NhMmJkYzUzZiIsImlhdCI6MTY0ODI5MDIyNiwiZXhwIjoxNjQ4Mzc2NjI2fQ.iDRedODFJTfif7Q9fxU9C3QFS4t1GRO2MxZ-FG7JTWg"
 // beforeAll(() => jest.setTimeout(90 * 1000))
 beforeAll( function(done){
  
@@ -25,7 +25,7 @@ beforeAll( function(done){
     .post('/api/articles/add')
     .set("Authorization", token)
     .set('Content-Type', 'multipart/form-data')
-    .field("title","1article to delete" )
+    .field("title","1st article" )
     .attach("article_image", "download.jpg")
     .field("description", "this is the article to delete from the test")
     .end((err, res) => {
@@ -35,7 +35,7 @@ beforeAll( function(done){
     done();
     });
 
-},1000000)
+},100000)
 
 describe('Articles', function(){
     
@@ -45,7 +45,7 @@ describe('Articles', function(){
             .post('/api/articles/add')
             .set("Authorization", token)
             .set('Content-Type', 'multipart/form-data')
-            .field("title","2Yeah from tests" )
+            .field("title","2nd from tests" )
             .attach("article_image", "download.jpg")
             .field("description", "this is from the test")
             .end((err, res) => {
@@ -56,13 +56,13 @@ describe('Articles', function(){
                 chai.expect(res.body).to.have.deep.property("_id")
             done();
             });
-    },1000000)
+    },100000)
     
   
     it('should view an article', (done)=>{
         chai.request(app)
         .get('/api/articles/view')
-        .query({"id":"6228905ace8eac57c10d6568"})
+        .query({"id":"62345cda14c8566e0a182a06"})
         // .then((res)=>{
         //     chai.expect(res).have.status(200)
         //     chai.expect(res.body).be.a('object')
@@ -110,7 +110,7 @@ describe('Articles', function(){
     },100000)
     it('should delete article', function(done){
         
-        articlesModel.findOne({Title: "1article to delete"}).then(function(result){
+        articlesModel.findOne({Title: "1st article"}).then(function(result){
             chai.request(app)
             .post('/api/articles/delete')
             .set('Content-Type', 'application/json')
@@ -134,7 +134,7 @@ describe('Articles', function(){
     },100000)
 })
 afterAll(function(){
-    articlesModel.findOne({Title: "2Yeah from tests"}).then(function(result){
+    articlesModel.findOne({Title: "2nd from tests"}).then(function(result){
         chai.request(app)
         .post('/api/articles/delete')
         .set('Content-Type', 'application/json')
