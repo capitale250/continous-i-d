@@ -22,7 +22,7 @@ export class Articles{
                     res.send(err)
                 res.json(articles);
                 //console.log('Articles returned')
-            });
+            }).sort({"Title":-1,_id:0});
         }
     }
     
@@ -44,7 +44,7 @@ export class Articles{
                    else{
                    articlesModel.create({
                     Title : req.body.title,
-                    FeaturedImage : '/images/articles/' + req.file.filename,
+                    FeaturedImage : '/images/articles/' + req.file.filename ,
                     Description :req.body.description ,
                     PostDate: new Date()
                     }, 
